@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun homeScreen(navController: NavController)
+fun homeScreen()
 {
     Column(
         modifier = Modifier

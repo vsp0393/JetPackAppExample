@@ -102,6 +102,7 @@ fun SignupScreen(navController: NavController) {
                         navController.navigate("otp_screen") {
                             popUpTo(navController.graph.startDestinationId)
                             launchSingleTop = true
+                            navController.popBackStack()
                         }
                     }
 

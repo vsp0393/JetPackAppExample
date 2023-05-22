@@ -3,5 +3,7 @@
 
     <style name="Theme.JetPackAppExample" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/black</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
     </style>
 </resources>
