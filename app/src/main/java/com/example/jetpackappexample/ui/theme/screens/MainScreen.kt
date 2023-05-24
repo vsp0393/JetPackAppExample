@@ -1,19 +1,13 @@
 package com.example.jetpackappexample.ui.theme.screens
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -23,19 +17,18 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpackappexample.apputil.BottomNavGraph
 import com.example.jetpackappexample.apputil.BottomNavigationScreen
-import com.example.jetpackappexample.ui.theme.md_theme_dark_appbg
-import com.example.jetpackappexample.ui.theme.md_theme_dark_error
 import com.example.jetpackappexample.ui.theme.md_theme_dark_tertiaryContainer
-import java.lang.reflect.Modifier
+import com.example.jetpackappexample.viewmodel.DonateListViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainScreen(navController: NavController) {
     val navController = rememberNavController()
+    val viewModel = DonateListViewModel()
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }
     ) {
-        BottomNavGraph(navController = navController)
+        BottomNavGraph(navController = navController,viewModel)
     }
 }
 

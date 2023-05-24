@@ -1,35 +1,33 @@
 package com.example.jetpackappexample.apputil
 
-import android.content.Context
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Create
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Place
-import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModel
 import com.example.jetpackappexample.R
+import com.example.jetpackappexample.viewmodel.DonateListViewModel
 
-sealed class BottomNavigationScreen(val route:String, val icon: Int, val label:String) {
+sealed class BottomNavigationScreen(
+    val route: String, val icon: Int, val label: String,
+    viewModel: ViewModel?
+) {
 
-    object Home:BottomNavigationScreen(
+    object Home : BottomNavigationScreen(
 
         route = "home",
         label = "Home",
-        icon = R.drawable._09113
+        icon = R.drawable._09113,
+        viewModel = null
     )
-    object Donate:BottomNavigationScreen(
+
+    object Donate : BottomNavigationScreen(
         route = "donate",
         label = "Donate",
-        icon = R.drawable.donation_7850
+        icon = R.drawable.donation_7850,
+        viewModel = DonateListViewModel()
+
     )
-    object Service:BottomNavigationScreen(
+    object Service : BottomNavigationScreen(
         route = "service",
         label = "Service",
-        icon = R.drawable.shopping_bag_option_icon
+        icon = R.drawable.shopping_bag_option_icon,
+        viewModel = null
     )
 }
