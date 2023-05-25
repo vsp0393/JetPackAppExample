@@ -9,7 +9,6 @@ import androidx.navigation.compose.composable
 import com.example.jetpackappexample.ui.theme.screens.Donate
 import com.example.jetpackappexample.ui.theme.screens.Service
 import com.example.jetpackappexample.ui.theme.screens.homeScreen
-import com.example.jetpackappexample.viewmodel.DonateListViewModel
 
 
 @Composable

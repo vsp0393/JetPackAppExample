@@ -1,31 +1,42 @@
 package com.example.jetpackappexample
 
+import android.app.Application
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.jetpackappexample.apputil.perferencesdatastore.DataStorePreferences
 import com.example.jetpackappexample.ui.theme.BottomNavBarDemoTheme
 import com.example.jetpackappexample.ui.theme.screens.LoginScreen
 import com.example.jetpackappexample.ui.theme.screens.MainScreen
 import com.example.jetpackappexample.ui.theme.screens.OtpViewScreen
 import com.example.jetpackappexample.ui.theme.screens.SignupScreen
+import com.example.jetpackappexample.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
 
 class MainActivity : ComponentActivity() {
-
-
-    private var isLoading: Boolean by mutableStateOf(false)
-
+    private lateinit var myViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        myViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
         setContent {
             BottomNavBarDemoTheme {
+                myViewModel.email.observe(this) { email ->
+                    // Use the email value here
+                   Toast.makeText(this@MainActivity,"$email",Toast.LENGTH_SHORT).show()
+                }
                 LoginApplication()
+
             }
         }
     }
@@ -33,7 +44,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun LoginApplication() {
-    val viewModel: ViewModel? = null
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "login_page", builder = {

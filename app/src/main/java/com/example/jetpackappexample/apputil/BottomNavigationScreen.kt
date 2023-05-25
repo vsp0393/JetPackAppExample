@@ -1,5 +1,6 @@
 package com.example.jetpackappexample.apputil
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import com.example.jetpackappexample.R
 import com.example.jetpackappexample.viewmodel.DonateListViewModel
@@ -21,7 +22,7 @@ sealed class BottomNavigationScreen(
         route = "donate",
         label = "Donate",
         icon = R.drawable.donation_7850,
-        viewModel = DonateListViewModel()
+        viewModel = DonateListViewModel(Application())
 
     )
     object Service : BottomNavigationScreen(

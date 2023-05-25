@@ -1,5 +1,6 @@
 package com.example.jetpackappexample.ui.theme.screens
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -25,9 +26,18 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.datastore.preferences.core.edit
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jetpackappexample.R
 import androidx.navigation.NavController
+import com.example.jetpackappexample.apputil.perferencesdatastore.DataStorePreferences
+import com.example.jetpackappexample.apputil.perferencesdatastore.PreferenceKey
 import com.example.jetpackappexample.ui.theme.md_theme_dark_appbg
+import com.example.jetpackappexample.viewmodel.LoginViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -37,6 +47,16 @@ fun LoginScreen(navController: NavController) {
     var mEmail by remember { mutableStateOf("") }
     var mPassword by remember { mutableStateOf("") }
     val maxChar = 30
+    val context = LocalContext.current
+    val viewModel: LoginViewModel = viewModel()
+    val usernameState = remember { mutableStateOf("") }
+
+
+    //Share preference data getting in composable
+    LaunchedEffect(Unit) {
+        val username = viewModel.getUserEmail().first()
+        usernameState.value = username
+    }
 
     Box(
         modifier = Modifier
@@ -129,6 +149,7 @@ fun LoginScreen(navController: NavController) {
                         }else if (mPassword.isEmpty()) {
                             Toast.makeText(mContext, "Please enter your Password", Toast.LENGTH_SHORT).show()
                         } else {
+                            viewModel.performEmailSave(mEmail)
                             Toast.makeText(mContext, "Successfully Login", Toast.LENGTH_SHORT)
                                 .show()
                             navController.navigate("home_screen") {
@@ -152,7 +173,10 @@ fun LoginScreen(navController: NavController) {
                     popUpTo(navController.graph.startDestinationId)
                     launchSingleTop = true
                 } }
-                , contentPadding = PaddingValues(0.dp),modifier = Modifier.wrapContentHeight().defaultMinSize(minHeight = 2.dp).padding(5.dp,0.dp,0.dp,0.dp),
+                , contentPadding = PaddingValues(0.dp),modifier = Modifier
+                        .wrapContentHeight()
+                        .defaultMinSize(minHeight = 2.dp)
+                        .padding(5.dp, 0.dp, 0.dp, 0.dp),
                 ) {
                     Text(
                         text = "Click to Create New Account!",
@@ -163,7 +187,6 @@ fun LoginScreen(navController: NavController) {
                 }
             }
         }
-
     }
 }
 

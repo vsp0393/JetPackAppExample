@@ -1,11 +1,13 @@
 package com.example.jetpackappexample.viewmodel
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.calvarytemple.models.donatemodels.DonateDataModel
 import com.calvarytemple.models.donatemodels.DonateMainModel
 import com.example.jetpackappexample.Repository
 import com.example.jetpackappexample.apputil.DataState
+import com.example.jetpackappexample.apputil.perferencesdatastore.DataStorePreferences
 import com.example.jetpackappexample.models.donatemodels.testmodel.Data
 import com.example.jetpackappexample.models.donatemodels.testmodel.TestModel
 import com.example.jetpackappexample.models.donatemodels.testmodel2.Genres
@@ -14,7 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DonateListViewModel : ViewModel() {
+class DonateListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = Repository()
 
