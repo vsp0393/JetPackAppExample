@@ -21,10 +21,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.jetpackappexample.R
+import com.example.jetpackappexample.models.donatemodels.testmodel2.Genres
 import com.example.jetpackappexample.ui.theme.*
 
 @Composable
-fun DonateListItemView() {
+fun DonateListItemView(donateItem3: List<Genres>) {
     Row(
         modifier = Modifier
             .wrapContentSize()

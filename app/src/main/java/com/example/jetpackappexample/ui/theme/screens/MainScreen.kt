@@ -24,11 +24,10 @@ import com.example.jetpackappexample.viewmodel.DonateListViewModel
 @Composable
 fun MainScreen(navController: NavController) {
     val navController = rememberNavController()
-    val viewModel = DonateListViewModel()
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }
     ) {
-        BottomNavGraph(navController = navController,viewModel)
+        BottomNavGraph(navController = navController)
     }
 }
 

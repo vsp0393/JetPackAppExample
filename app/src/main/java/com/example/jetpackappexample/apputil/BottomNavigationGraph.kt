@@ -1,6 +1,7 @@
 package com.example.jetpackappexample.apputil
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -12,7 +13,7 @@ import com.example.jetpackappexample.viewmodel.DonateListViewModel
 
 
 @Composable
-fun BottomNavGraph(navController: NavHostController, viewModel: ViewModel) {
+fun BottomNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = BottomNavigationScreen.Home.route
@@ -24,7 +25,7 @@ fun BottomNavGraph(navController: NavHostController, viewModel: ViewModel) {
             Service()
         }
         composable(route = BottomNavigationScreen.Donate.route) {
-            Donate(viewModel = DonateListViewModel())
+            Donate()
         }
     }
 }

@@ -13,9 +13,10 @@ import com.example.jetpackappexample.ui.theme.screens.LoginScreen
 import com.example.jetpackappexample.ui.theme.screens.MainScreen
 import com.example.jetpackappexample.ui.theme.screens.OtpViewScreen
 import com.example.jetpackappexample.ui.theme.screens.SignupScreen
-
+import dagger.hilt.android.AndroidEntryPoint
 
 class MainActivity : ComponentActivity() {
+
 
     private var isLoading: Boolean by mutableStateOf(false)
 

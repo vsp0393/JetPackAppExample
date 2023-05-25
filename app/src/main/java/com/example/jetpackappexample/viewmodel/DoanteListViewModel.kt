@@ -15,15 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DonateListViewModel : ViewModel() {
-    /* val donateItem: MutableState<DataState<DonateMainModel>?> = mutableStateOf(null)
 
-     fun donateList() {
-         viewModelScope.launch {
-             repo.donateItemList().onEach {
-                 donateItem.value = it
-             }.launchIn(viewModelScope)
-         }
-     }*/
     private val repository = Repository()
 
     private val _donateMutableLiveData = MutableLiveData<List<DonateDataModel>>()
