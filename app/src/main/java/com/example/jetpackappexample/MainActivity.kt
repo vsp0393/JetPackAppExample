@@ -6,6 +6,9 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -24,10 +27,14 @@ import kotlinx.coroutines.flow.first
 
 class MainActivity : ComponentActivity() {
     private lateinit var myViewModel: LoginViewModel
+    private lateinit var dataStore: DataStore<Preferences>
+    val myApp = application as MyApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         myViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        //dataStore = preferencesDataStore("app_preferences")
+
 
         setContent {
             BottomNavBarDemoTheme {
